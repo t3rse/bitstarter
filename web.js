@@ -5,9 +5,10 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   response.writeHead(200, {'Content-Type': 'text/html'});  
-  var fileContents = fs.readFileSync('index.html');
+//  var fileContents = fs.readFileSync('index.html');
 //  console.log(fileContents.toString('utf-8'));
-  response.send(fileContents.toString('utf-8'));
+//  response.send(fileContents.toString('utf-8'));
+    response.send("I am OK");
 });
 
 
