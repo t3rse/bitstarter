@@ -38,6 +38,10 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
+var assertUrlIsPassed = function(url){
+	return url.length > 0;
+};
+
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
 };
@@ -80,7 +84,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-		.option('-u, --url <web_url>', 'Url to test file', clone(assertFileExists),URLFILE_DEFAULT) 
+		.option('-u, --url <web_url>', 'Url to test file', clone(assertUrlIsPassed),URLFILE_DEFAULT) 
         .parse(process.argv);
 	if(program.url.length > 0){
 		var checkJson = checkFromUrl(program.url, program.checks);
