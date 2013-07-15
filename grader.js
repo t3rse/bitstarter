@@ -83,12 +83,15 @@ if(require.main == module) {
 		.option('-u, --url <web_url>', 'Url to test file', clone(assertFileExists),URLFILE_DEFAULT) 
         .parse(process.argv);
 	if(program.url.length > 0){
-		var checkResult = checkFromUrl(program.url, program.checks);
-		console.log(checkResult);
+		var checkJson = checkFromUrl(program.url, program.checks);
+		var outJson = JSON.stringify(checkJson, null, 4);
+		console.log(outJson);
 	}
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+	else{
+		var checkJson = checkHtmlFile(program.file, program.checks);
+		var outJson = JSON.stringify(checkJson, null, 4);
+		console.log(outJson);
+	}
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
