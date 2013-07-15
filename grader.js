@@ -27,7 +27,7 @@ var cheerio = require('cheerio');
 var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
-var URLFILE_DEFAULT = "http://shrouded-atoll-9633.herokuapp.com";
+var URLFILE_DEFAULT = "";
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -82,7 +82,7 @@ if(require.main == module) {
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
 		.option('-u, --url <web_url>', 'Url to test file', clone(assertFileExists),URLFILE_DEFAULT) 
         .parse(process.argv);
-	if(program.url){
+	if(program.url.length > 0){
 		var checkResult = checkFromUrl(program.url, program.checks);
 		console.log(checkResult);
 	}
